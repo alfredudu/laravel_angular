@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace LaravelProject\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
