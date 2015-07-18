@@ -4,6 +4,7 @@ namespace LaravelProject\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use LaravelProject\Client;
 use LaravelProject\Http\Requests;
 use LaravelProject\Http\Controllers\Controller;
 
@@ -24,20 +25,10 @@ class ClientController extends Controller
      *
      * @return Response
      */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  Request  $request
-     * @return Response
-     */
     public function store(Request $request)
     {
-        //
+        return Client::create($request->all());
     }
 
     /**
