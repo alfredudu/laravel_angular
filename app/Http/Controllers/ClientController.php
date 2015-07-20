@@ -49,9 +49,9 @@ class ClientController extends Controller
      * @return Response
      */
 
-    public function update(Request $request, $id)
+    public function update($id)
     {
-
+        Client::find($id)->update();
     }
 
     /**
