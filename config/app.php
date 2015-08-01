@@ -144,6 +144,7 @@ return [
         LaravelProject\Providers\AppServiceProvider::class,
         LaravelProject\Providers\EventServiceProvider::class,
         LaravelProject\Providers\RouteServiceProvider::class,
+        LaravelProject\Providers\LaravelProjectRepositoryProvider::class,
 
     ],
 
