@@ -4,9 +4,10 @@ namespace LaravelProject\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use LaravelProject\Client;
+use LaravelProject\Entities\Client;
 use LaravelProject\Http\Requests;
 use LaravelProject\Http\Controllers\Controller;
+use LaravelProject\Repositories\ClientRepositoryEloquent;
 
 class ClientController extends Controller
 {
@@ -15,9 +16,9 @@ class ClientController extends Controller
      *
      * @return Response
      */
-    public function index()
+    public function index(ClientRepositoryEloquent $repository)
     {
-        return \LaravelProject\Client::all();
+        return $repository->all();
     }
 
     /**
