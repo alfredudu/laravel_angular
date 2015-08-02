@@ -4,6 +4,7 @@ namespace LaravelProject\Http\Controllers;
 
 use LaravelProject\Repositories\ClientRepository;
 use Illuminate\Http\Request;
+use LaravelProject\Services\ClientService;
 
 
 class ClientController extends Controller
@@ -13,10 +14,20 @@ class ClientController extends Controller
      */
 {
     private $repository;
+    /**
+     * @var ClientService
+     */
+    private $service;
 
-    public function __construct(ClientRepository $repository) {
+    /**
+     * @param ClientRepository $repository
+     * @param ClientService $service
+     */
+
+    public function __construct(ClientRepository $repository, ClientService $service) {
 
         $this->repository = $repository;
+        $this->service = $service;
     }
 
     public function index()
@@ -26,7 +37,7 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-        return $this->repository->create($request->all());
+        return $this->service->create($request->all());
     }
 
     public function show($id)
@@ -37,12 +48,12 @@ class ClientController extends Controller
 
     public function update(Request $request, $id)
     {
-        return $this->repository->find($id)->update($request->all());
+        return $this->service->update($request->all(),$id);
 
     }
 
     public function destroy($id)
     {
-        return $this->repository->find($id)->delete();
+        return $this->repository->delete($id);
     }
 }
