@@ -11,10 +11,12 @@ namespace LaravelProject\Services;
 
 use Illuminate\Contracts\Validation\ValidationException;
 use LaravelProject\Repositories\ClientRepository;
+use LaravelProject\Repositories\ProjectRepository;
 use LaravelProject\Validators\ClientValidator;
+use LaravelProject\Validators\ProjectValidator;
 use Prettus\Validator\Exceptions\ValidatorException;
 
-class ClientService
+class ProjectService
 {
     /**
      * @var ClientRepository
@@ -28,7 +30,7 @@ class ClientService
 
     protected $validator;
 
-    public function __construct (ClientRepository $repository, ClientValidator $validator){
+    public function __construct (ProjectRepository $repository, ProjectValidator $validator){
 
         $this->repository = $repository;
         $this->validator = $validator;
@@ -51,7 +53,7 @@ class ClientService
     {
         try {
             $this->validator->with($data)->passesOrFail();
-            return $this->repository->update($data, $id);
+            return $this->repository->update($data);
         }
         catch(ValidationException $e){
             return [
