@@ -14,7 +14,7 @@ use LaravelProject\Repositories\ClientRepository;
 use LaravelProject\Validators\ClientValidator;
 use Prettus\Validator\Exceptions\ValidatorException;
 
-class ClientService
+class ProjectNoteService
 {
     /**
      * @var ClientRepository
@@ -28,14 +28,13 @@ class ClientService
 
     protected $validator;
 
-    public function __construct (ClientRepository $repository, ClientValidator $validator){
+    public function __construct (ProjectNoteRepository $repository, ProjectNoteValidator $validator){
 
         $this->repository = $repository;
         $this->validator = $validator;
 }
 
-    public function create(array $data)
-    {
+    public function create(array $data){
         try {
             $this->validator->with($data)->passesOrFail();
             return $this->repository->create($data);
@@ -48,23 +47,19 @@ class ClientService
         }
     }
 
-    /**
-     * @param array $data
-     * @param $id
-     * @return array|mixed
-     * @throws ValidatorException
-     */
     public function update(array $data, $id)
     {
         try {
             $this->validator->with($data)->setId($id)->passesOrFail();
             $this->repository->update($data, $id);
         }
+
         catch(ValidationException $e){
             return [
                 'error' => true,
                 'message' => $e->getMessageBag()
             ];
         }
+
     }
 }

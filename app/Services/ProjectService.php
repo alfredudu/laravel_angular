@@ -52,16 +52,15 @@ class ProjectService
     public function update(array $data, $id)
     {
         try {
-            $this->validator->with($data)->passesOrFail();
-            return $this->repository->update($data);
+            $this->validator->with($data)->setId($id)->passesOrFail();
+            $this->repository->update($data, $id);
         }
         catch(ValidationException $e){
             return [
                 'error' => true,
                 'message' => $e->getMessageBag()
             ];
-
         }
-        return $this->repository->update($data,$id);
+
     }
 }
