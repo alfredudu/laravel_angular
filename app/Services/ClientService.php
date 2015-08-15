@@ -9,7 +9,6 @@
 namespace LaravelProject\Services;
 
 
-use Illuminate\Contracts\Validation\ValidationException;
 use LaravelProject\Repositories\ClientRepository;
 use LaravelProject\Validators\ClientValidator;
 use Prettus\Validator\Exceptions\ValidatorException;
@@ -60,7 +59,7 @@ class ClientService
             $this->validator->with($data)->setId($id)->passesOrFail();
             $this->repository->update($data, $id);
         }
-        catch(ValidationException $e){
+        catch(ValidatorException $e){
             return [
                 'error' => true,
                 'message' => $e->getMessageBag()

@@ -9,9 +9,8 @@
 namespace LaravelProject\Services;
 
 
-use Illuminate\Contracts\Validation\ValidationException;
-use LaravelProject\Repositories\ClientRepository;
-use LaravelProject\Validators\ClientValidator;
+use LaravelProject\Repositories\ProjectNoteRepository;
+use LaravelProject\Validators\ProjectNoteValidator;
 use Prettus\Validator\Exceptions\ValidatorException;
 
 class ProjectNoteService
@@ -54,7 +53,7 @@ class ProjectNoteService
             $this->repository->update($data, $id);
         }
 
-        catch(ValidationException $e){
+        catch(ValidatorException $e){
             return [
                 'error' => true,
                 'message' => $e->getMessageBag()
