@@ -11,7 +11,11 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        \LaravelProject\Entities\User::truncate();
-        factory(\LaravelProject\Entities\User::class, 10)->create();
+        factory(\LaravelProject\Entities\User::class)->create([
+        'name' => 'Alfredo',
+        'email' => 'alfredudu_007@hotmail.com',
+        'password' => bcrypt(123456),
+        'remember_token' => str_random(10),
+        ]);
     }
 }
