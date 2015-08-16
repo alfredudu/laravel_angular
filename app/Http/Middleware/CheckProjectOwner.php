@@ -25,9 +25,7 @@ class CheckProjectOwner
         $userId= \Authorizer::getResourceOwnerId();
         $projectId = $request->project;
 
-        if($this->repository->isOwner($projectId, $userId)==false){
-            return ['Erro'=>'Acesso Negado'];
-        }
+        return $this->repository->isOwner($projectId, $userId)==false;
 
         return $next($request);
     }
