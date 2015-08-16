@@ -5,6 +5,7 @@ namespace LaravelProject\Http\Controllers;
 use Illuminate\Http\Request;
 use LaravelProject\Repositories\ProjectRepository;
 use LaravelProject\Services\ProjectService;
+use LucaDegasperi\OAuth2Server\Facades\Authorizer;
 
 
 class ProjectController extends Controller
@@ -42,6 +43,11 @@ class ProjectController extends Controller
 
     public function show($id)
     {
+        $userId= Authorizer::getResourceOwnerId();
+        if($this->repository->isOwner($id, $userId)==false){
+           return ['success'=>false];
+        }
+
         return $this->repository->find($id);
     }
 
