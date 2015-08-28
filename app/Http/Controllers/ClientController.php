@@ -54,6 +54,13 @@ class ClientController extends Controller
 
     public function destroy($id)
     {
-        return $this->repository->delete($id);
+        if($this->repository->delete($id){
+
+            return ['success'  => true ];
+
+    }else{
+
+        return Response::json(['success' => false],400);
+
     }
 }
